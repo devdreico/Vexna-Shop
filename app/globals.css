@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0a0a0c;
+  --color-ink-800: #14141a;
+  --color-ink-700: #1f1f28;
+  --color-ink-600: #2b2b36;
+  --color-gold: #d4af37;
+  --color-gold-light: #f0d98c;
+  --color-gold-deep: #a8801f;
+  --color-blue: #2563eb;
+  --color-blue-bright: #3b82f6;
+  --color-blue-deep: #0b1e4d;
+  --color-cloud: #f6f7fa;
+  --color-muted: #6b7280;
+  --color-danger: #dc2626;
+
+  --font-display: var(--font-anton), Impact, sans-serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+}
+
+@utility text-gold-gradient {
+  background: linear-gradient(180deg, #f9edc0 0%, #d4af37 55%, #a8801f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gold-gradient {
+  background: linear-gradient(135deg, #f5e3a5 0%, #d4af37 45%, #a8801f 100%);
+}
+
+@utility bg-hero-glow {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(37, 99, 235, 0.35), transparent 45%),
+    radial-gradient(circle at 12% 82%, rgba(212, 175, 55, 0.22), transparent 42%),
+    var(--color-ink);
+}
+
+@utility btn-focus {
+  outline: none;
+  &:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+}
