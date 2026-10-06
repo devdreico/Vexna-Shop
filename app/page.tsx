@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SITE } from "@/data/config";
-import { getFeatured } from "@/data/products";
+import { PRODUCTS, getCategoryLabel, getProduct } from "@/data/products";
+import { formatPrice } from "@/lib/format";
+import { BrandMark } from "@/components/BrandMark";
 import { GALLERY } from "@/data/gallery";
 import { ProductCard } from "@/components/product/ProductCard";
 import { FacebookPagePlugin } from "@/components/FacebookPagePlugin";
@@ -40,8 +42,19 @@ const STEPS = [
   },
 ];
 
+const REFERENCE_SLUGS = [
+  "casco-urbano-vx-aero",
+  "luz-delantera-1200lm",
+  "candado-u-reforzado",
+];
+
 export default function HomePage() {
-  const featured = getFeatured(4);
+  const references = REFERENCE_SLUGS.map((slug) => getProduct(slug)).filter(
+    (p): p is NonNullable<typeof p> => Boolean(p),
+  );
+  const refSlugs = new Set(references.map((p) => p.slug));
+  const rest = PRODUCTS.filter((p) => !refSlugs.has(p.slug));
+  const featured = [...rest.filter((p) => p.featured), ...rest.filter((p) => !p.featured)].slice(0, 4);
 
   return (
     <PageTransition>
@@ -79,15 +92,18 @@ export default function HomePage() {
               style={{ "--hero-delay": "360ms" } as React.CSSProperties}
             >
               <Link href="/tienda" transitionTypes={["nav-forward"]} className={btnPrimary}>
-                Ver tienda
+                Ver productos
+              </Link>
+              <Link href="/comunidad" transitionTypes={["nav-forward"]} className={btnOutlineGold}>
+                Ir a la comunidad
               </Link>
               <Link
                 href={SITE.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={btnOutlineGold}
+                className="text-sm font-semibold text-white/70 underline-offset-4 transition hover:text-gold hover:underline"
               >
-                Seguir a {SITE.brand}
+                o seguilos en Facebook →
               </Link>
             </div>
 
@@ -109,24 +125,69 @@ export default function HomePage() {
             </ul>
           </div>
 
-          <div className="relative mx-auto hidden w-full max-w-md lg:block">
-            <Parallax speed={0.14} className="animate-float">
-              <div className="rounded-sm border border-gold/50 bg-white p-4 transition duration-300 hover:border-gold">
-                <Image
-                  src="/logo.png"
-                  alt={SITE.name}
-                  width={520}
-                  height={520}
-                  priority
-                  className="h-auto w-full rounded-sm"
-                />
-                <div className="mt-4 flex items-center justify-between px-1 pb-1">
-                  <span className="text-[10px] font-bold tracking-[0.3em] text-ink/70 uppercase">
-                    VX · Colombia
-                  </span>
-                  <span className="text-[10px] font-bold tracking-[0.3em] text-gold-deep uppercase">
-                    Est. 2026
-                  </span>
+          <div
+            className="animate-hero-in relative w-full min-w-0"
+            style={{ "--hero-delay": "460ms" } as React.CSSProperties}
+          >
+            <Parallax speed={0.12}>
+              <div className="glass-dark rounded-sm p-5">
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="text-[10px] font-bold tracking-[0.3em] text-gold uppercase">
+                    Referencias
+                  </p>
+                  <p className="text-[10px] font-bold tracking-[0.25em] text-white/60 uppercase">
+                    Top del catálogo
+                  </p>
+                </div>
+
+                <ul className="mt-4 space-y-3">
+                  {references.map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={`/producto/${p.slug}`}
+                        transitionTypes={["nav-forward"]}
+                        className="group flex items-center gap-4 rounded-sm border border-white/10 bg-white/[0.04] p-3 transition duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:bg-white/[0.07]"
+                      >
+                        <span className="relative block h-14 w-16 shrink-0 overflow-hidden rounded-sm bg-ink">
+                          <Image
+                            src={p.image}
+                            alt=""
+                            fill
+                            sizes="64px"
+                            className="object-cover transition duration-500 group-hover:scale-105"
+                          />
+                        </span>
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-sm font-semibold text-white transition group-hover:text-gold">
+                            {p.name}
+                          </span>
+                          <span className="mt-0.5 block text-[11px] text-white/60">
+                            {getCategoryLabel(p.category)}
+                          </span>
+                        </span>
+                        <span className="shrink-0 font-display font-extrabold text-sm text-gold">
+                          {formatPrice(p.price)}
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                  <Link
+                    href="/tienda"
+                    transitionTypes={["nav-forward"]}
+                    className={`${btnGold} w-full px-4 text-center`}
+                  >
+                    Ir a la tienda
+                  </Link>
+                  <Link
+                    href="/comunidad"
+                    transitionTypes={["nav-forward"]}
+                    className={`${btnOutlineGold} w-full px-4 text-center`}
+                  >
+                    Ver comunidad
+                  </Link>
                 </div>
               </div>
             </Parallax>
@@ -226,6 +287,9 @@ export default function HomePage() {
       <section className="bg-cloud">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:py-20 lg:grid-cols-2 lg:items-center">
           <div data-reveal>
+            <div className="mb-5">
+              <BrandMark variant="plain" size={56} />
+            </div>
             <p className={eyebrow}>Comunidad</p>
             <h2 className="mt-3 text-3xl sm:text-4xl">Seguí a {SITE.brand} en Facebook</h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink/75">

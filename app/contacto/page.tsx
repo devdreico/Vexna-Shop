@@ -4,6 +4,7 @@ import { SITE } from "@/data/config";
 import { ContactForm } from "@/components/contacto/ContactForm";
 import { btnOutlineGold, eyebrow } from "@/lib/ui";
 import { PageTransition } from "@/components/motion/PageTransition";
+import { BrandMark } from "@/components/BrandMark";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -27,7 +28,10 @@ export default function ContactoPage() {
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-4">
             <div className="panel-dark rounded-sm p-6 text-white">
-              <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">Facebook</p>
+              <div className="mb-4 flex items-center gap-3">
+                <BrandMark size={36} />
+                <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">Facebook</p>
+              </div>
               <p className="mt-2 text-sm text-white/70">{SITE.brand} — página oficial de contenido.</p>
               <a
                 href={SITE.facebookUrl}

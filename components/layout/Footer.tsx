@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { NAV, SITE } from "@/data/config";
 import { CATEGORIES } from "@/data/products";
+import { BrandMark } from "@/components/BrandMark";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +10,10 @@ export function Footer() {
     <footer className="border-t-2 border-gold/50 bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display font-extrabold text-3xl tracking-widest text-gold">VEXNA SHOP</p>
+          <div className="flex items-center gap-3">
+            <BrandMark size={44} />
+            <p className="font-display font-extrabold text-3xl tracking-widest text-gold">VEXNA SHOP</p>
+          </div>
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/75">
             Accesorios, componentes y ropa para bicicleta. Pedí contraentrega en Colombia o pagá
             directo con Mercado Pago.

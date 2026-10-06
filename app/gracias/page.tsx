@@ -9,6 +9,7 @@ import { btnGold, btnPrimary } from "@/lib/ui";
 const formatCOP = (n: number) =>
   new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n);
 import { PageTransition } from "@/components/motion/PageTransition";
+import { BrandMark } from "@/components/BrandMark";
 
 export default function GraciasPage() {
   const order = useSyncExternalStore(subscribeOrderNoop, readOrder, getServerOrder);
@@ -17,7 +18,8 @@ export default function GraciasPage() {
     <PageTransition>
         <section data-reveal className="bg-matte text-white">
           <div className="mx-auto max-w-2xl px-4 py-20 text-center">
-            <p className="text-xs font-bold tracking-[0.3em] text-blue-bright uppercase">VEXNA SHOP</p>
+            <BrandMark size={64} className="mx-auto" />
+            <p className="mt-7 text-xs font-bold tracking-[0.3em] text-blue-bright uppercase">VEXNA SHOP</p>
             <h1 className="mt-4 text-4xl sm:text-5xl text-gold">¡Pedido recibido!</h1>
             <p className="mt-5 text-sm leading-relaxed text-white/75">
               Gracias por comprar con nosotros. Registramos tu pedido y te contactaremos por WhatsApp

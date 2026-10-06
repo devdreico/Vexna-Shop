@@ -4,6 +4,7 @@ import { SITE } from "@/data/config";
 import { FacebookPagePlugin } from "@/components/FacebookPagePlugin";
 import { btnPrimary, btnOutlineGold, eyebrow } from "@/lib/ui";
 import { PageTransition } from "@/components/motion/PageTransition";
+import { BrandMark } from "@/components/BrandMark";
 
 export const metadata: Metadata = {
   title: `Comunidad ${SITE.brand}`,
@@ -15,6 +16,9 @@ export default function ComunidadPage() {
     <PageTransition>
       <section data-reveal className="bg-matte text-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
+          <div className="mb-6">
+            <BrandMark size={56} />
+          </div>
           <p className={eyebrow}>Redes</p>
           <h1 className="mt-3 text-4xl sm:text-5xl text-gold">
             Comunidad {SITE.brand}
