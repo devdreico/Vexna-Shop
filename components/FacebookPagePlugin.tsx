@@ -10,10 +10,10 @@ interface Props {
 export function FacebookPagePlugin({ tabs = "timeline", width = 500, height = 620, className = "" }: Props) {
   const src = `https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
     SITE.facebookUrl,
-  )}&tabs=${tabs}&width=${width}&height=${height}&adapt_container_width=true&hide_cover=false&show_facepile=true&appId`;
+  )}&tabs=${tabs}&width=${width}&height=${height}&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
   return (
-    <div className={`overflow-hidden rounded-sm border border-gold/40 bg-ink-800 ${className}`}>
+    <div className={`panel-dark overflow-hidden rounded-sm ${className}`}>
       <iframe
         src={src}
         width={width}
@@ -26,6 +26,19 @@ export function FacebookPagePlugin({ tabs = "timeline", width = 500, height = 62
         title={`Página de Facebook de ${SITE.brand}`}
         loading="lazy"
       />
+      <div className="flex items-center justify-between gap-3 border-t border-gold/30 px-4 py-3">
+        <span className="text-[10px] font-bold tracking-[0.25em] text-white/70 uppercase">
+          {SITE.brand} en Facebook
+        </span>
+        <a
+          href={SITE.facebookUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[11px] font-bold tracking-widest text-gold uppercase transition hover:text-white"
+        >
+          Abrir página →
+        </a>
+      </div>
     </div>
   );
 }

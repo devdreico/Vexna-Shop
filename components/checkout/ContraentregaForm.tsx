@@ -77,7 +77,7 @@ export function ContraentregaForm() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-      <form onSubmit={handleSubmit} className="rounded-sm border border-ink/10 bg-white p-6 sm:p-8">
+      <form onSubmit={handleSubmit} className="rounded-sm glass-light p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)] sm:p-8">
         <h2 className="text-2xl">Datos de entrega</h2>
         <p className="mt-1 mb-6 text-sm text-muted">
           Completá tus datos y coordinamos la entrega. Pagás en efectivo al recibir.
@@ -153,7 +153,7 @@ export function ContraentregaForm() {
         </p>
       </form>
 
-      <aside className="h-fit rounded-sm border border-gold/50 bg-ink p-6 text-white lg:sticky lg:top-32">
+      <aside className="panel-dark h-fit rounded-sm p-6 text-white lg:sticky lg:top-32">
         <h2 className="text-xl text-gold">Resumen del pedido</h2>
         <ul className="mt-5 divide-y divide-white/10">
           {lines.map((l) => (
@@ -167,7 +167,7 @@ export function ContraentregaForm() {
         </ul>
         <div className="mt-4 flex items-center justify-between border-t border-gold/40 pt-4">
           <span className="text-xs font-bold tracking-widest text-white/60 uppercase">Total</span>
-          <span className="font-display text-3xl text-gold-gradient">{formatPrice(subtotal)}</span>
+          <span className="font-display font-extrabold text-3xl text-gold">{formatPrice(subtotal)}</span>
         </div>
         <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs text-white/60">
           <p>· Pago contraentrega al recibir el pedido.</p>

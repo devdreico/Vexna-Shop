@@ -11,6 +11,7 @@ import { eyebrow } from "@/lib/ui";
 interface Props {
   params: Promise<{ slug: string }>;
 }
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
@@ -56,7 +57,7 @@ export default async function ProductoPage({ params }: Props) {
   };
 
   return (
-    <>
+    <PageTransition>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav className="border-b border-ink/10 bg-cloud" aria-label="Migas de pan">
@@ -71,7 +72,7 @@ export default async function ProductoPage({ params }: Props) {
         </ol>
       </nav>
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
+      <section data-reveal className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-4">
             <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-gold/40 bg-ink">
@@ -84,7 +85,7 @@ export default async function ProductoPage({ params }: Props) {
                 className="object-cover"
               />
               {product.badge && (
-                <span className="absolute top-4 left-4 bg-gold-gradient px-3 py-1.5 text-[11px] font-bold tracking-widest text-ink uppercase">
+                <span className="absolute top-4 left-4 bg-gold px-3 py-1.5 text-[11px] font-bold tracking-widest text-ink uppercase">
                   {product.badge}
                 </span>
               )}
@@ -102,7 +103,7 @@ export default async function ProductoPage({ params }: Props) {
             <p className={eyebrow}>{getCategoryLabel(product.category)}</p>
             <h1 className="mt-3 text-4xl sm:text-5xl">{product.name}</h1>
             <p className="mt-4 text-base leading-relaxed text-muted">{product.short}</p>
-            <p className="mt-6 font-display text-4xl text-gold-deep">{formatPrice(product.price)}</p>
+            <p className="mt-6 font-display font-extrabold text-4xl text-gold-deep">{formatPrice(product.price)}</p>
 
             <div className="my-6 h-px bg-ink/10" />
 
@@ -125,16 +126,16 @@ export default async function ProductoPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="border-t border-ink/10 bg-cloud">
+      <section data-reveal className="border-t border-ink/10 bg-cloud">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-2xl">También te puede gustar</h2>
           <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {suggestions.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {suggestions.map((p, i) => (
+              <ProductCard key={p.slug} product={p} index={i} />
             ))}
           </div>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

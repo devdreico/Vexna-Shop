@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { eyebrow } from "@/lib/ui";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export const metadata: Metadata = {
   title: "Envíos y cambios",
@@ -42,15 +43,15 @@ const SECTIONS = [
 
 export default function EnviosYCambiosPage() {
   return (
-    <>
-      <section className="bg-ink text-white">
+    <PageTransition>
+      <section data-reveal className="bg-ink text-white">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <p className={eyebrow}>Información</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl text-gold-gradient">Envíos y cambios</h1>
+          <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Envíos y cambios</h1>
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 py-12">
+      <section data-reveal className="mx-auto max-w-4xl px-4 py-12">
         <div className="space-y-8">
           {SECTIONS.map((s) => (
             <article key={s.title} className="rounded-sm border border-ink/10 bg-white p-6 sm:p-8">
@@ -67,6 +68,6 @@ export default function EnviosYCambiosPage() {
           ))}
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

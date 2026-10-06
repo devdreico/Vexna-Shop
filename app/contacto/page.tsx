@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SITE } from "@/data/config";
 import { ContactForm } from "@/components/contacto/ContactForm";
 import { btnOutlineGold, eyebrow } from "@/lib/ui";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -11,21 +12,21 @@ export const metadata: Metadata = {
 
 export default function ContactoPage() {
   return (
-    <>
-      <section className="bg-ink text-white">
+    <PageTransition>
+      <section data-reveal className="bg-ink text-white">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <p className={eyebrow}>Hablemos</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl text-gold-gradient">Contacto</h1>
+          <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Contacto</h1>
           <p className="mt-3 max-w-2xl text-sm text-white/70">
             Consultas sobre productos, envíos o pedidos: respondemos por Facebook y por email.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-12">
+      <section data-reveal className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-4">
-            <div className="rounded-sm border border-gold/50 bg-ink p-6 text-white">
+            <div className="panel-dark rounded-sm p-6 text-white">
               <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">Facebook</p>
               <p className="mt-2 text-sm text-white/70">{SITE.brand} — página oficial de contenido.</p>
               <a
@@ -38,7 +39,7 @@ export default function ContactoPage() {
               </a>
             </div>
 
-            <div className="rounded-sm border border-ink/10 bg-cloud p-6">
+            <div className="glass-light rounded-sm p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)]">
               <p className="text-xs font-bold tracking-[0.25em] text-blue uppercase">Email</p>
               {SITE.email.startsWith("TU_") ? (
                 <p className="mt-2 text-sm text-ink/80">
@@ -62,7 +63,7 @@ export default function ContactoPage() {
               </p>
             </div>
 
-            <div className="rounded-sm border border-ink/10 bg-cloud p-6">
+            <div className="glass-light rounded-sm p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)]">
               <p className="text-xs font-bold tracking-[0.25em] text-blue uppercase">Pedidos</p>
               <ul className="mt-3 space-y-2 text-sm text-ink/80">
                 <li>
@@ -86,6 +87,6 @@ export default function ContactoPage() {
           <ContactForm />
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

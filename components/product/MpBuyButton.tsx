@@ -85,6 +85,7 @@ export function MpBuyButton({ product, qty, className = "" }: Props) {
 
   return (
     <>
+      <div className={className}>
       <button
         type="button"
         onClick={() => {
@@ -92,7 +93,7 @@ export function MpBuyButton({ product, qty, className = "" }: Props) {
           setMessage("");
           setOpen(true);
         }}
-        className={`${btnGold} ${className}`}
+        className={`${btnGold} w-full`}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
           <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -106,16 +107,17 @@ export function MpBuyButton({ product, qty, className = "" }: Props) {
           Pago online pendiente de configurar (link de Mercado Pago del producto).
         </p>
       )}
+      </div>
 
       {open && (
         <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-ink/80 p-4 backdrop-blur-sm sm:items-center"
+          className="animate-backdrop-in fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-ink/75 p-4 backdrop-blur-md sm:items-center"
           role="dialog"
           aria-modal="true"
           aria-labelledby="mp-dialog-title"
           onMouseDown={(e) => e.target === e.currentTarget && setOpen(false)}
         >
-          <div className="my-8 w-full max-w-lg rounded-sm border border-gold/50 bg-white shadow-2xl">
+          <div className="animate-dialog-in my-8 w-full max-w-lg rounded-sm border border-gold/50 bg-white/90 shadow-2xl backdrop-blur-xl">
             <div className="flex items-start justify-between gap-4 border-b border-ink/10 bg-ink px-6 py-4">
               <div>
                 <p className="text-[10px] font-bold tracking-[0.25em] text-blue uppercase">
@@ -142,7 +144,7 @@ export function MpBuyButton({ product, qty, className = "" }: Props) {
                 <p className="font-semibold text-ink">
                   {product.name} <span className="text-muted">× {qty}</span>
                 </p>
-                <p className="mt-1 font-display text-xl text-gold-deep">{formatPrice(total)}</p>
+                <p className="mt-1 font-display font-extrabold text-xl text-gold-deep">{formatPrice(total)}</p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">

@@ -32,7 +32,7 @@ export function ShopGrid() {
               key={c.slug}
               type="button"
               onClick={() => setCategory(c.slug)}
-              className={`rounded-sm border px-4 py-2 text-xs font-bold tracking-widest uppercase transition btn-focus ${
+              className={`rounded-sm border px-4 py-2 text-xs font-bold tracking-widest uppercase transition duration-300 btn-focus ${
                 category === c.slug
                   ? "border-blue bg-blue text-white"
                   : "border-ink/15 text-ink/70 hover:border-gold hover:text-gold-deep"
@@ -63,8 +63,8 @@ export function ShopGrid() {
         </p>
       ) : (
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((p) => (
-            <ProductCard key={p.slug} product={p} />
+          {items.map((p, i) => (
+            <ProductCard key={p.slug} product={p} index={i} />
           ))}
         </div>
       )}

@@ -34,9 +34,9 @@ export function GalleryGrid() {
             key={c.slug}
             type="button"
             onClick={() => setActive(c.slug)}
-            className={`rounded-sm border px-4 py-2 text-xs font-bold tracking-widest uppercase transition btn-focus ${
+            className={`rounded-sm border px-4 py-2 text-xs font-bold tracking-widest uppercase transition duration-300 btn-focus ${
               active === c.slug
-                ? "border-gold bg-gold-gradient text-ink"
+                ? "border-gold bg-gold text-ink"
                 : "border-ink/15 text-ink/70 hover:border-blue hover:text-blue"
             }`}
           >
@@ -51,7 +51,7 @@ export function GalleryGrid() {
             key={item.src}
             type="button"
             onClick={() => setCurrent(i)}
-            className={`group relative block overflow-hidden rounded-sm border border-ink/10 bg-ink btn-focus ${
+            className={`group relative block overflow-hidden rounded-sm border border-ink/10 bg-ink duration-300 hover:-translate-y-1 hover:border-gold/50 btn-focus ${
               i % 5 === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
             }`}
             aria-label={`Ampliar: ${item.title}`}
@@ -72,7 +72,7 @@ export function GalleryGrid() {
 
       {current !== null && items[current] && (
         <div
-          className="fixed inset-0 z-[70] flex items-center justify-center bg-ink/95 p-4"
+          className="animate-backdrop-in fixed inset-0 z-[70] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
           aria-label={items[current].title}
@@ -100,7 +100,7 @@ export function GalleryGrid() {
             </svg>
           </button>
 
-          <figure className="max-h-full w-full max-w-4xl">
+          <figure className="animate-dialog-in max-h-full w-full max-w-4xl">
             <div className="relative aspect-[9/7] w-full overflow-hidden rounded-sm border border-gold/50">
               <Image
                 src={items[current].src}

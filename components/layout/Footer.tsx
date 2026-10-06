@@ -9,8 +9,8 @@ export function Footer() {
     <footer className="border-t-2 border-gold/50 bg-ink text-white">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
-          <p className="font-display text-3xl tracking-widest text-gold-gradient">VEXNA SHOP</p>
-          <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/70">
+          <p className="font-display font-extrabold text-3xl tracking-widest text-gold">VEXNA SHOP</p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/75">
             Accesorios, componentes y ropa para bicicleta. Pedí contraentrega en Colombia o pagá
             directo con Mercado Pago.
           </p>
@@ -29,7 +29,7 @@ export function Footer() {
 
         <div>
           <p className="mb-4 text-xs font-bold tracking-[0.25em] text-gold uppercase">Tienda</p>
-          <ul className="space-y-2.5 text-sm text-white/70">
+          <ul className="space-y-2.5 text-sm text-white/75">
             {CATEGORIES.map((c) => (
               <li key={c.slug}>
                 <Link href={`/tienda?categoria=${c.slug}`} className="transition hover:text-gold">
@@ -47,7 +47,7 @@ export function Footer() {
 
         <div>
           <p className="mb-4 text-xs font-bold tracking-[0.25em] text-gold uppercase">Información</p>
-          <ul className="space-y-2.5 text-sm text-white/70">
+          <ul className="space-y-2.5 text-sm text-white/75">
             {NAV.map((n) => (
               <li key={n.href}>
                 <Link href={n.href} className="transition hover:text-gold">

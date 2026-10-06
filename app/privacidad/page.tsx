@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { eyebrow } from "@/lib/ui";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export const metadata: Metadata = {
   title: "Privacidad",
@@ -8,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function PrivacidadPage() {
   return (
-    <>
-      <section className="bg-ink text-white">
+    <PageTransition>
+      <section data-reveal className="bg-ink text-white">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <p className={eyebrow}>Legal</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl text-gold-gradient">Privacidad</h1>
+          <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Privacidad</h1>
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-4 py-12">
+      <section data-reveal className="mx-auto max-w-4xl px-4 py-12">
         <div className="space-y-7 text-sm leading-relaxed text-ink/80">
           <p>
             En {`VEXNA SHOP`} tratamos únicamente los datos necesarios para procesar tu pedido:
@@ -58,6 +59,6 @@ export default function PrivacidadPage() {
           </article>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

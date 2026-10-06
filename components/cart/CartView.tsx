@@ -67,7 +67,7 @@ export function CartView() {
                     +
                   </button>
                 </div>
-                <p className="font-display text-xl text-gold-deep">{formatPrice(l.subtotal)}</p>
+                <p className="font-display font-extrabold text-xl text-gold-deep">{formatPrice(l.subtotal)}</p>
               </div>
             </div>
           </article>
@@ -87,7 +87,7 @@ export function CartView() {
         </div>
       </div>
 
-      <aside className="h-fit rounded-sm border border-gold/50 bg-ink p-6 text-white lg:sticky lg:top-32">
+      <aside className="panel-dark h-fit rounded-sm p-6 text-white lg:sticky lg:top-32">
         <h2 className="text-xl text-gold">Resumen</h2>
         <dl className="mt-5 space-y-3 text-sm">
           <div className="flex justify-between">
@@ -101,7 +101,7 @@ export function CartView() {
         </dl>
         <div className="mt-4 flex items-center justify-between border-t border-gold/40 pt-4">
           <span className="text-xs font-bold tracking-widest text-white/60 uppercase">Total</span>
-          <span className="font-display text-3xl text-gold-gradient">{formatPrice(subtotal)}</span>
+          <span className="font-display font-extrabold text-3xl text-gold">{formatPrice(subtotal)}</span>
         </div>
 
         <Link href="/checkout" className={`${btnGold} mt-6 w-full`}>
