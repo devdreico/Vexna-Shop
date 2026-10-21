@@ -8,15 +8,15 @@ export const SITE = {
   locale: "es_CO",
   country: "Colombia",
   currency: "COP",
-  email: "TU_EMAIL",
   address: "Colombia",
   facebookUrl: "https://www.facebook.com/profile.php?id=61592077406874",
   facebookPageId: "61592077406874",
+  /** Reemplazar por el WhatsApp real de VEXNA (formato internacional sin +) */
+  whatsapp: "https://wa.me/573000000000",
 } as const;
 
 export const FORMSPREE = {
   contraentrega: "https://formspree.io/f/xjygkkyp",
-  contacto: "https://formspree.io/f/TU_FORM_ID",
 } as const;
 
 export const NAV = [
@@ -24,5 +24,5 @@ export const NAV = [
   { href: "/tienda", label: "Tienda" },
   { href: "/galeria", label: "Galería" },
   { href: "/comunidad", label: "Comunidad" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/rutas", label: "Rutas" },
 ] as const;

@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tienda",
     "/galeria",
     "/comunidad",
-    "/contacto",
+    "/rutas",
     "/envios-y-cambios",
     "/privacidad",
   ].map((path) => ({

@@ -17,12 +17,13 @@ Sin backend propio: el carrito vive en `localStorage` y los pedidos se envían a
 
 ```
 app/                páginas (home, tienda, producto/[slug], carrito, checkout,
-                    gracias, galeria, comunidad, contacto, envios-y-cambios,
+                    gracias, galeria, comunidad, rutas, envios-y-cambios,
                     privacidad, sitemap, robots)
-components/         header, footer, carrito, productos, checkout, galería, contacto
-data/config.ts      sitio, Facebook, endpoints de Formspree
+components/         header, footer, carrito, productos, checkout, galería, rutas
+data/config.ts      sitio, Facebook, WhatsApp, endpoints de Formspree
 data/products.ts    catálogo de 10 productos (precios, specs)
 data/gallery.ts     fotos de la galería
+data/rutas.ts       Rutas VEXNA: próximas y realizadas con info de llegada (ejemplo a editar)
 lib/                formato COP, tipos, clases de UI, snapshot del pedido
 public/products/    imágenes de productos (SVG placeholder → reemplazar por fotos)
 public/gallery/     imágenes de la galería (SVG placeholder → reemplazar por fotos)
@@ -37,18 +38,22 @@ app/opengraph-image.tsx  imagen social generada con next/og (Montserrat en asset
 | Uso | Endpoint |
 | --- | --- |
 | Pedidos contra entrega (carrito → `/checkout`) | `https://formspree.io/f/xjygkkyp` |
-| Formulario de contacto (opcional) | `https://formspree.io/f/TU_FORM_ID` |
 
-Los endpoints viven en `data/config.ts`. El formulario de contacto muestra un aviso hasta que
-coloques su endpoint real.
+Los endpoints viven en `data/config.ts`.
 
 ### 2. Datos del sitio (`data/config.ts`)
 
 - `SITE.url`: dominio final (Vercel) → afecta sitemap, OpenGraph y metadata.
-- `SITE.email`: tu email de contacto (si queda como `TU_EMAIL`, la web muestra el enlace a Facebook).
 - `SITE.facebookUrl`: página de VEXNA BIKE (ya configurada).
+- `SITE.whatsapp`: WhatsApp de VEXNA (`wa.me/573000000000` es placeholder → reemplazar).
 
-### 3. Fotos
+### 3. Rutas (`data/rutas.ts`)
+
+Contenido de ejemplo (4 realizadas + 2 próximas en la Sabana Occidental). Reemplazá nombres,
+fechas, puntos de encuentro, links de Maps y fotos por los reales. El estado **Próxima /
+Realizada** se calcula solo a partir de la fecha.
+
+### 4. Fotos
 
 Reemplazá los SVG de `public/products/` y `public/gallery/` por fotos reales manteniendo los
 mismos nombres (o actualizá `image` / `gallery` en `data/products.ts` y `src` en `data/gallery.ts`).
@@ -78,8 +83,9 @@ npm run typecheck  # TypeScript
 
 ## Checklist antes de publicar
 
-- [ ] Endpoint de Formspree de contacto configurado (opcional).
+- [ ] `SITE.whatsapp` con el número real (placeholder `wa.me/573000000000`).
+- [ ] Rutas reales en `data/rutas.ts` (fechas, encuentros, Maps).
 - [ ] Fotos reales en `public/products/` y `public/gallery/`.
-- [ ] `SITE.url` y `SITE.email` actualizados.
-- [ ] Pedido de prueba real en ambos formularios de Formspree.
+- [ ] `SITE.url` actualizado.
+- [ ] Pedido de prueba real en el formulario de Formspree.
 - [ ] Revisar el Page Plugin de Facebook en el dominio público (en localhost puede no renderizar).

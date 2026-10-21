@@ -377,11 +377,11 @@ export default function HomePage() {
                 Comprar ahora
               </Link>
               <Link
-                href="/contacto"
+                href="/rutas"
                 transitionTypes={["nav-forward"]}
                 className={btnOutlineInk}
               >
-                Contactanos
+                Ver rutas
               </Link>
             </div>
           </div>

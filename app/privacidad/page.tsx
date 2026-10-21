@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageTransition } from "@/components/motion/PageTransition";
 
@@ -54,7 +55,14 @@ export default function PrivacidadPage() {
             <h2 className="text-xl text-fg">Tus derechos</h2>
             <p className="mt-2">
               Podés solicitar acceso, actualización o eliminación de tus datos escribiéndonos por
-              Facebook o al email de contacto indicado en la página Contacto.
+              Facebook o por WhatsApp.
+            </p>
+            <p className="mt-2 text-sm text-muted">
+              Nuestras salidas y puntos de contacto están publicados en la página{" "}
+              <Link href="/rutas" className="underline decoration-gold decoration-2 underline-offset-2 hover:text-gold-deep">
+                Rutas
+              </Link>
+              .
             </p>
           </article>
         </div>

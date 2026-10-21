@@ -25,3 +25,12 @@ export const label = "mb-1.5 block text-xs font-bold tracking-[0.14em] text-mute
 
 export const eyebrow =
   "inline-flex items-center gap-2 text-xs font-bold tracking-[0.28em] text-gold-deep uppercase before:h-1.5 before:w-1.5 before:rounded-full before:bg-gold before:content-['']";
+
+const baseBtnSm =
+  "inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-xs font-bold tracking-wide uppercase transition duration-200 active:scale-[0.97] btn-focus";
+
+export const btnPrimarySm = `${baseBtnSm} bg-gold text-ink hover:bg-gold-light`;
+
+export const btnOutlineGoldSm = `${baseBtnSm} border border-gold-deep/70 text-gold-deep hover:bg-gold hover:border-gold hover:text-ink`;
+
+export const btnOutlineSm = `${baseBtnSm} border border-line text-fg hover:border-gold hover:text-ink hover:bg-gold`;
