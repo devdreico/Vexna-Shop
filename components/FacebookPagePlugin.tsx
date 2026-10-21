@@ -13,7 +13,7 @@ export function FacebookPagePlugin({ tabs = "timeline", width = 500, height = 62
   )}&tabs=${tabs}&width=${width}&height=${height}&adapt_container_width=true&hide_cover=false&show_facepile=true`;
 
   return (
-    <div className={`panel-dark overflow-hidden rounded-sm ${className}`}>
+    <div className={`panel-dark overflow-hidden rounded-3xl ${className}`}>
       <iframe
         src={src}
         width={width}

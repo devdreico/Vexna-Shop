@@ -19,9 +19,9 @@ export function ContraentregaForm() {
 
   if (count === 0) {
     return (
-      <div className="rounded-sm border border-gold/50 bg-cloud px-6 py-12 text-center">
+      <div className="rounded-3xl border border-gold/45 bg-gold/10 px-6 py-12 text-center">
         <h2 className="text-2xl">Tu carrito está vacío</h2>
-        <p className="mt-2 text-sm text-muted">Agregá productos para generar tu pedido contraentrega.</p>
+        <p className="mt-2 text-sm text-muted">Agregá productos para generar tu pedido contra entrega.</p>
         <Link href="/tienda" className={`${btnPrimary} mt-6`}>
           Ir a la tienda
         </Link>
@@ -39,11 +39,11 @@ export function ContraentregaForm() {
     setMessage("");
 
     const data = new FormData(e.currentTarget);
-    data.set("_subject", `Nuevo pedido contraentrega — ${SITE.name}`);
+    data.set("_subject", `Nuevo pedido contra entrega — ${SITE.name}`);
     data.set("_pedido", orderText);
     data.set("_total", formatPrice(subtotal));
     data.set("_items", String(count));
-    data.set("_metodo_pago", String(data.get("medio_pago") ?? "Contraentrega"));
+    data.set("_metodo_pago", String(data.get("medio_pago") ?? "Contra entrega"));
     data.set("_source", "vexna-shop-checkout");
     data.set("fecha", new Date().toISOString());
 
@@ -59,7 +59,7 @@ export function ContraentregaForm() {
           nombre: String(data.get("nombre") ?? ""),
           total: formatPrice(subtotal),
           lines: lines.map((l) => ({ name: l.product.name, qty: l.qty, subtotal: l.subtotal })),
-          metodo: String(data.get("medio_pago") ?? "Contraentrega"),
+          metodo: String(data.get("medio_pago") ?? "Contra entrega"),
         });
         clear();
         router.push("/gracias");
@@ -77,10 +77,11 @@ export function ContraentregaForm() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-      <form onSubmit={handleSubmit} className="rounded-sm glass-light p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)] sm:p-8">
+      <form onSubmit={handleSubmit} className="glass-light rounded-3xl p-6 sm:p-8">
         <h2 className="text-2xl">Datos de entrega</h2>
         <p className="mt-1 mb-6 text-sm text-muted">
-          Completá tus datos y coordinamos la entrega. Pagás en efectivo al recibir.
+          Completá tus datos y coordinamos la entrega por WhatsApp. Pagás al recibir el producto,
+          nunca por adelantado.
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -123,14 +124,14 @@ export function ContraentregaForm() {
         </div>
 
         <fieldset className="mt-6">
-          <legend className={label}>Medio de pago contraentrega *</legend>
+          <legend className={label}>¿Cómo preferís pagar al recibir? *</legend>
           <div className="flex flex-wrap gap-3">
-            <label className="flex cursor-pointer items-center gap-2 rounded-sm border border-ink/15 px-4 py-3 text-sm transition hover:border-blue">
-              <input type="radio" name="medio_pago" value="Efectivo" defaultChecked className="accent-blue" />
+            <label className="flex cursor-pointer items-center gap-2 rounded-full border border-line bg-card px-4 py-3 text-sm transition hover:border-gold">
+              <input type="radio" name="medio_pago" value="Efectivo" defaultChecked className="accent-gold" />
               Efectivo
             </label>
-            <label className="flex cursor-pointer items-center gap-2 rounded-sm border border-ink/15 px-4 py-3 text-sm transition hover:border-blue">
-              <input type="radio" name="medio_pago" value="Transferencia" className="accent-blue" />
+            <label className="flex cursor-pointer items-center gap-2 rounded-full border border-line bg-card px-4 py-3 text-sm transition hover:border-gold">
+              <input type="radio" name="medio_pago" value="Transferencia" className="accent-gold" />
               Transferencia al recibir
             </label>
           </div>
@@ -139,27 +140,27 @@ export function ContraentregaForm() {
         <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
         {message && (
-          <p role="alert" className="mt-5 rounded-sm bg-danger/10 px-3 py-2 text-sm text-danger">
+          <p role="alert" className="mt-5 rounded-2xl bg-danger-soft px-3 py-2 text-sm text-danger">
             {message}
           </p>
         )}
 
         <button type="submit" disabled={status === "sending"} className={`${btnPrimary} mt-6 w-full`}>
-          {status === "sending" ? "Enviando pedido…" : "Confirmar pedido contraentrega"}
+          {status === "sending" ? "Enviando pedido…" : "Confirmar pedido contra entrega"}
         </button>
         <p className="mt-3 text-xs leading-relaxed text-muted">
-          Tu pedido se registra y te contactamos por WhatsApp para coordinar la entrega. No se cobra
-          nada por adelantado.
+          Solo registramos tu pedido: no se cobra nada por adelantado. Te contactamos por WhatsApp
+          para confirmar y coordinar la entrega.
         </p>
       </form>
 
-      <aside className="panel-dark h-fit rounded-sm p-6 text-white lg:sticky lg:top-32">
+      <aside className="panel-dark h-fit rounded-3xl p-6 text-white lg:sticky lg:top-32">
         <h2 className="text-xl text-gold">Resumen del pedido</h2>
         <ul className="mt-5 divide-y divide-white/10">
           {lines.map((l) => (
             <li key={l.product.slug} className="flex items-start justify-between gap-4 py-3 text-sm">
               <span>
-                <span className="font-bold text-blue-bright">{l.qty}×</span> {l.product.name}
+                <span className="font-bold text-gold">{l.qty}×</span> {l.product.name}
               </span>
               <span className="shrink-0 text-white/80">{formatPrice(l.subtotal)}</span>
             </li>
@@ -169,10 +170,10 @@ export function ContraentregaForm() {
           <span className="text-xs font-bold tracking-widest text-white/60 uppercase">Total</span>
           <span className="font-display font-extrabold text-3xl text-gold">{formatPrice(subtotal)}</span>
         </div>
-        <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs text-white/60">
-          <p>· Pago contraentrega al recibir el pedido.</p>
+        <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs text-white/65">
+          <p>· Pagás contra entrega: efectivo o transferencia al recibir.</p>
           <p>· Envío coordinado por WhatsApp.</p>
-          <p>· Pedidos desde {formatPrice(0)} sin costo de gestión.</p>
+          <p>· Sin pagos previos ni datos de tarjeta.</p>
         </div>
       </aside>
     </div>

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { AddToCartButton } from "@/components/product/AddToCartButton";
-import { MpBuyButton } from "@/components/product/MpBuyButton";
 import { formatPrice } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -12,11 +11,11 @@ export function ProductPurchase({ product }: { product: Product }) {
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center gap-4">
-        <div className="flex items-center rounded-sm border border-ink/15">
+        <div className="flex items-center rounded-full border border-line bg-card">
           <button
             type="button"
             onClick={() => setQty((q) => Math.max(1, q - 1))}
-            className="px-4 py-3 text-ink/70 transition hover:text-blue"
+            className="px-4 py-3 text-muted transition hover:text-gold-deep"
             aria-label="Disminuir cantidad"
           >
             −
@@ -27,7 +26,7 @@ export function ProductPurchase({ product }: { product: Product }) {
           <button
             type="button"
             onClick={() => setQty((q) => Math.min(99, q + 1))}
-            className="px-4 py-3 text-ink/70 transition hover:text-blue"
+            className="px-4 py-3 text-muted transition hover:text-gold-deep"
             aria-label="Aumentar cantidad"
           >
             +
@@ -41,15 +40,27 @@ export function ProductPurchase({ product }: { product: Product }) {
 
       <div className="flex flex-col gap-3 sm:flex-row">
         <AddToCartButton slug={product.slug} qty={qty} className="flex-1" />
-        <MpBuyButton product={product} qty={qty} className="flex-1" />
       </div>
 
-      <p className="text-xs leading-relaxed text-muted">
-        <span className="font-semibold text-blue">Carrito:</span> se paga únicamente contraentrega
-        (efectivo o transferencia al recibir).{" "}
-        <span className="font-semibold text-gold-deep">Mercado Pago:</span> pago inmediato desde esta
-        ficha; antes registramos tus datos de envío.
-      </p>
+      <div className="rounded-3xl border border-gold/45 bg-gold/12 px-5 py-4">
+        <p className="text-xs font-black tracking-[0.2em] text-gold-deep uppercase">
+          Pago contra entrega
+        </p>
+        <p className="mt-1.5 text-xs leading-relaxed text-muted">
+          Agregá al carrito y recibí en tu puerta. Pagás en efectivo o transferencia al recibir el
+          producto: no se paga nada por adelantado.
+        </p>
+        <ul className="mt-3 flex flex-wrap gap-2">
+          {["Envío nacional", "Garantía 30 días", "Cambios en 48 h"].map((t) => (
+            <li
+              key={t}
+              className="rounded-full border border-gold/50 bg-gold/20 px-3 py-1 text-[10px] font-bold tracking-widest text-gold-deep uppercase"
+            >
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

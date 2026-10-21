@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "@/data/config";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
-import { btnOutlineGold, eyebrow } from "@/lib/ui";
+import { btnOutlineGold } from "@/lib/ui";
+import { PageHero } from "@/components/layout/PageHero";
 import { PageTransition } from "@/components/motion/PageTransition";
 
 export const metadata: Metadata = {
@@ -13,16 +14,12 @@ export const metadata: Metadata = {
 export default function GaleriaPage() {
   return (
     <PageTransition>
-      <section data-reveal className="bg-ink text-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-end justify-between gap-5 px-4 py-14">
-          <div>
-            <p className={eyebrow}>Comunidad en imágenes</p>
-            <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Galería</h1>
-            <p className="mt-3 max-w-xl text-sm text-white/70">
-              Builds, rutas, eventos y entregas. El contenido completo vive también en nuestra
-              página de Facebook.
-            </p>
-          </div>
+      <PageHero
+        eyebrowText="Comunidad en imágenes"
+        title="Galería"
+        description="Builds, rutas, eventos y entregas. El contenido completo vive también en nuestra página de Facebook."
+      >
+        <div className="mt-7 flex flex-wrap gap-3">
           <Link
             href={SITE.facebookUrl}
             target="_blank"
@@ -32,7 +29,7 @@ export default function GaleriaPage() {
             Ver más en Facebook
           </Link>
         </div>
-      </section>
+      </PageHero>
 
       <section data-reveal className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
         <GalleryGrid />

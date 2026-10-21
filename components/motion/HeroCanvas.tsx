@@ -27,7 +27,8 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
     let dots: Dot[] = [];
     let raf = 0;
 
-    const colors = ["212,175,55", "37,99,235"];
+    const palette = (dark: boolean): [string, string] =>
+      dark ? ["255,214,10", "244,244,246"] : ["255,214,10", "10,10,12"];
 
     function resize() {
       const rect = canvas!.getBoundingClientRect();
@@ -50,6 +51,7 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
 
     function paint() {
       const g = ctx!;
+      const colors = palette(document.documentElement.classList.contains("dark"));
       g.clearRect(0, 0, width, height);
 
       for (const d of dots) {
@@ -79,7 +81,7 @@ export function HeroCanvas({ className = "" }: { className?: string }) {
           g.beginPath();
           g.moveTo(a.x, a.y);
           g.lineTo(b.x, b.y);
-          g.strokeStyle = `rgba(212,175,55,${(1 - dist / 132) * 0.12})`;
+          g.strokeStyle = `rgba(255,214,10,${(1 - dist / 132) * 0.14})`;
           g.lineWidth = 1;
           g.stroke();
         }

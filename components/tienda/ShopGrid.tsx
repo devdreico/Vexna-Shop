@@ -32,10 +32,10 @@ export function ShopGrid() {
               key={c.slug}
               type="button"
               onClick={() => setCategory(c.slug)}
-              className={`rounded-sm border px-4 py-2 text-xs font-bold tracking-widest uppercase transition duration-300 btn-focus ${
+              className={`rounded-full border px-4 py-2 text-xs font-bold tracking-widest uppercase transition duration-300 btn-focus ${
                 category === c.slug
-                  ? "border-blue bg-blue text-white"
-                  : "border-ink/15 text-ink/70 hover:border-gold hover:text-gold-deep"
+                  ? "border-gold bg-gold text-ink shadow-[0_10px_24px_-14px_rgba(255,214,10,0.9)]"
+                  : "border-line text-muted hover:border-gold hover:text-gold-deep"
               }`}
             >
               {c.label}
@@ -58,7 +58,7 @@ export function ShopGrid() {
       </div>
 
       {items.length === 0 ? (
-        <p className="rounded-sm border border-ink/10 bg-cloud px-6 py-12 text-center text-sm text-muted">
+        <p className="rounded-3xl border border-line bg-bg-2 px-6 py-12 text-center text-sm text-muted">
           No encontramos productos con esa búsqueda.
         </p>
       ) : (

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE } from "@/data/config";
 import { ContactForm } from "@/components/contacto/ContactForm";
-import { btnOutlineGold, eyebrow } from "@/lib/ui";
+import { btnOutlineGold } from "@/lib/ui";
+import { PageHero } from "@/components/layout/PageHero";
 import { PageTransition } from "@/components/motion/PageTransition";
-import { BrandMark } from "@/components/BrandMark";
 
 export const metadata: Metadata = {
   title: "Contacto",
@@ -14,69 +14,62 @@ export const metadata: Metadata = {
 export default function ContactoPage() {
   return (
     <PageTransition>
-      <section data-reveal className="bg-ink text-white">
-        <div className="mx-auto max-w-6xl px-4 py-14">
-          <p className={eyebrow}>Hablemos</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Contacto</h1>
-          <p className="mt-3 max-w-2xl text-sm text-white/70">
-            Consultas sobre productos, envíos o pedidos: respondemos por Facebook y por email.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrowText="Hablemos"
+        title="Contacto"
+        description="Consultas sobre productos, envíos o pedidos: respondemos por Facebook y por email."
+      />
 
       <section data-reveal className="mx-auto max-w-6xl px-4 py-12">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div className="space-y-4">
-            <div className="panel-dark rounded-sm p-6 text-white">
-              <div className="mb-4 flex items-center gap-3">
-                <BrandMark size={36} />
-                <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">Facebook</p>
-              </div>
-              <p className="mt-2 text-sm text-white/70">{SITE.brand} — página oficial de contenido.</p>
+            <div className="panel-dark rounded-3xl p-6 text-white">
+              <p className="text-xs font-bold tracking-[0.25em] text-gold uppercase">Facebook</p>
+              <p className="mt-2 text-sm text-white/75">{SITE.brand} — página oficial de contenido.</p>
               <a
                 href={SITE.facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-sm bg-blue px-5 py-3 text-xs font-bold tracking-widest uppercase transition hover:bg-blue-bright"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-bold tracking-widest text-ink uppercase transition hover:bg-gold-light"
               >
                 Abrir página
               </a>
             </div>
 
-            <div className="glass-light rounded-sm p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)]">
-              <p className="text-xs font-bold tracking-[0.25em] text-blue uppercase">Email</p>
+            <div className="glass-light rounded-3xl p-6">
+              <p className="text-xs font-bold tracking-[0.25em] text-gold-deep uppercase">Email</p>
               {SITE.email.startsWith("TU_") ? (
-                <p className="mt-2 text-sm text-ink/80">
+                <p className="mt-2 text-sm text-fg">
                   Muy pronto por aquí. Mientras tanto, escribinos por{" "}
                   <a
                     href={SITE.facebookUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-semibold text-blue hover:text-gold-deep"
+                    className="font-semibold text-gold-deep hover:underline"
                   >
                     Facebook
                   </a>
                   .
                 </p>
               ) : (
-                <p className="mt-2 text-sm text-ink/80">{SITE.email}</p>
+                <p className="mt-2 text-sm text-fg">{SITE.email}</p>
               )}
               <p className="mt-4 text-xs leading-relaxed text-muted">
-                Para pedidos, el canal más rápido es el checkout contraentrega o la ficha de cada
-                producto con pago Mercado Pago.
+                Para pedidos, el canal más rápido es el checkout: todos los pedidos se registran
+                contra entrega y se coordinan por WhatsApp.
               </p>
             </div>
 
-            <div className="glass-light rounded-sm p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)]">
-              <p className="text-xs font-bold tracking-[0.25em] text-blue uppercase">Pedidos</p>
-              <ul className="mt-3 space-y-2 text-sm text-ink/80">
+            <div className="glass-light rounded-3xl p-6">
+              <p className="text-xs font-bold tracking-[0.25em] text-gold-deep uppercase">Pedidos</p>
+              <ul className="mt-3 space-y-2 text-sm text-fg">
                 <li>
-                  <Link href="/tienda" className="font-semibold text-blue hover:text-gold-deep">
+                  <Link href="/tienda" className="font-semibold text-gold-deep hover:underline">
                     Catálogo →
                   </Link>
                 </li>
                 <li>
-                  <Link href="/envios-y-cambios" className="font-semibold text-blue hover:text-gold-deep">
+                  <Link href="/envios-y-cambios" className="font-semibold text-gold-deep hover:underline">
                     Envíos y cambios →
                   </Link>
                 </li>

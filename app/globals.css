@@ -1,22 +1,60 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
+  /* Negro y blancos fijos (siempre iguales en ambos temas) */
   --color-ink: #0a0a0c;
   --color-ink-800: #14141a;
   --color-ink-700: #1f1f28;
   --color-ink-600: #2b2b36;
-  --color-gold: #d4af37;
-  --color-gold-light: #f0d98c;
-  --color-gold-deep: #a8801f;
-  --color-blue: #2563eb;
-  --color-blue-bright: #3b82f6;
-  --color-blue-deep: #0b1e4d;
   --color-cloud: #f6f7fa;
-  --color-muted: #6b7280;
+
+  /* Amarillo dominante */
+  --color-gold: #ffd60a;
+  --color-gold-light: #ffe45c;
+  --color-gold-deep: #8a6d00; /* texto de acento en tema claro; en oscuro vuelve amarillo */
+  --color-gold-soft: #fff8dc; /* fondo amarillo suave */
+
+  /* Tokens con tema (valores por defecto = tema claro) */
+  --color-bg: #ffffff;
+  --color-bg-2: #fffaf0;
+  --color-card: #ffffff;
+  --color-fg: #0a0a0c;
+  --color-muted: #5b6068;
+  --color-line: rgb(10 10 12 / 0.1);
+  --color-glass: rgb(255 255 255 / 0.72);
+  --color-glass-line: rgb(10 10 12 / 0.08);
+  --color-glass-header: rgb(255 255 255 / 0.82);
+
   --color-danger: #dc2626;
+  --color-danger-soft: rgb(220 38 38 / 0.1);
 
   --font-display: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-montserrat), "Montserrat", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Tema oscuro: negro domina, amarillo de acento en texto */
+.dark {
+  color-scheme: dark;
+  --color-bg: #0a0a0c;
+  --color-bg-2: #101014;
+  --color-card: #17171d;
+  --color-fg: #f4f4f6;
+  --color-muted: #9aa1ab;
+  --color-line: rgb(255 255 255 / 0.12);
+  --color-glass: rgb(255 255 255 / 0.05);
+  --color-glass-line: rgb(255 255 255 / 0.1);
+  --color-glass-header: rgb(10 10 12 / 0.82);
+  --color-cloud: #14141a;
+  --color-gold-deep: #ffd60a;
+}
+
+:root {
+  color-scheme: light;
+
+  /* Grano fino compartido (grassmorphism): ruido SVG sutil */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.22'/%3E%3C/svg%3E");
 }
 
 @layer base {
@@ -25,11 +63,14 @@
   }
 
   body {
-    background-color: var(--color-white);
-    color: var(--color-ink);
+    background-color: var(--color-bg);
+    color: var(--color-fg);
     font-family: var(--font-sans);
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   ::selection {
@@ -48,39 +89,58 @@
   }
 }
 
-@utility bg-matte {
-  background-color: var(--color-ink);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+/* ---------- Superficies grassmorphism (redondeadas + grano) ---------- */
 
-@utility glass-dark {
-  background-color: rgb(255 255 255 / 0.06);
-  backdrop-filter: blur(14px) saturate(120%);
-  border: 1px solid rgb(255 255 255 / 0.12);
+@utility bg-matte {
+  background-color: var(--color-bg-2);
+  background-image: var(--grain);
 }
 
 @utility glass-light {
-  background-color: rgb(255 255 255 / 0.72);
-  backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid rgb(10 10 12 / 0.07);
+  background-color: var(--color-glass);
+  background-image: var(--grain);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid var(--color-glass-line);
+  box-shadow: 0 18px 44px -24px rgb(10 10 12 / 0.4);
 }
 
 @utility glass-gold {
-  background-color: rgb(212 175 55 / 0.1);
-  backdrop-filter: blur(14px) saturate(130%);
-  border: 1px solid rgb(212 175 55 / 0.35);
+  background-color: rgb(255 214 10 / 0.16);
+  background-image: var(--grain);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgb(255 214 10 / 0.45);
 }
 
 @utility glass-header {
-  background-color: rgb(10 10 12 / 0.78);
-  backdrop-filter: blur(16px) saturate(130%);
+  background-color: var(--color-glass-header);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
 }
 
 @utility panel-dark {
-  background-color: rgb(10 10 12 / 0.96);
+  background-color: rgb(10 10 12 / 0.97);
+  background-image: var(--grain);
   backdrop-filter: blur(16px) saturate(125%);
-  border: 1px solid rgb(212 175 55 / 0.4);
+  -webkit-backdrop-filter: blur(16px) saturate(125%);
+  border: 1px solid rgb(255 214 10 / 0.35);
+  box-shadow: 0 26px 60px -30px rgb(10 10 12 / 0.8);
 }
+
+@utility grass-yellow {
+  background-color: var(--color-gold);
+  background-image: var(--grain);
+  border: 1px solid rgb(10 10 12 / 0.12);
+  color: var(--color-ink);
+}
+
+@utility marker {
+  background-image: linear-gradient(transparent 58%, var(--color-gold) 58%, var(--color-gold) 94%, transparent 94%);
+  padding-inline: 0.08em;
+}
+
+/* ---------- Utilidades de interacción ---------- */
 
 @utility animate-pop {
   animation: pop 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -106,8 +166,8 @@
 @utility btn-focus {
   outline: none;
   &:focus-visible {
-    outline: 2px solid var(--color-gold);
-    outline-offset: 2px;
+    outline: 2px solid var(--color-gold-deep);
+    outline-offset: 3px;
   }
 }
 
@@ -131,7 +191,7 @@
   bottom: -6px;
   left: 0;
   height: 2px;
-  background: var(--color-gold);
+  background: var(--color-gold-deep);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);

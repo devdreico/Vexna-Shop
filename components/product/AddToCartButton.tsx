@@ -28,7 +28,7 @@ export function AddToCartButton({ slug, qty = 1, className = "" }: Props) {
     <button
       type="button"
       onClick={handleAdd}
-      className={`${btnPrimary} ${added ? "!bg-gold !text-ink" : ""} ${className}`}
+      className={`${btnPrimary} ${added ? "bg-ink! text-gold!" : ""} ${className}`}
     >
       {added ? "✓ Agregado al carrito" : "Agregar al carrito"}
     </button>

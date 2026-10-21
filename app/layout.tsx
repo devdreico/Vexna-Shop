@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "accesorios bicicleta",
     "tienda ciclismo Colombia",
     "contraentrega",
-    "Mercado Pago",
+    "pago contra entrega",
     SITE.brand,
   ],
   openGraph: {
@@ -36,33 +36,36 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — Accesorios para bicicleta en Colombia`,
     description: SITE.description,
-    images: [{ url: "/logo.png", width: 1254, height: 1254, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.name,
     description: SITE.description,
-    images: ["/logo.png"],
   },
   robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0c",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0c" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
 
+const THEME_INIT =
+  "try{var k='vexna:theme';var t=localStorage.getItem(k);var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t!== 'light'&&m))document.documentElement.classList.add('dark')}catch(e){}";
+
+const MOTION_INIT =
+  "try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ready')}catch(e){}";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={montserrat.variable}>
+    <html lang="es" className={montserrat.variable} suppressHydrationWarning>
       <body className="flex min-h-screen flex-col">
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion-ready')}catch(e){}",
-          }}
-        />
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+        <script dangerouslySetInnerHTML={{ __html: MOTION_INIT }} />
         <CartProvider>
           <MotionProvider />
           <Header />

@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { SITE } from "@/data/config";
-
 interface Props {
   size?: number;
   variant?: "plate" | "plain";
@@ -8,23 +5,20 @@ interface Props {
 }
 
 export function BrandMark({ size = 48, variant = "plate", className = "" }: Props) {
-  const dim = variant === "plate" ? size + 14 : size;
+  const fontSize = Math.max(15, Math.round(size * 0.5));
 
   return (
     <span
-      className={`inline-flex shrink-0 items-center justify-center rounded-sm ${
-        variant === "plate" ? "bg-white p-1.5" : ""
-      } ${className}`}
-      style={{ width: dim, height: dim }}
-      aria-hidden="true"
+      role="img"
+      aria-label="VEXNA"
+      className={`inline-flex items-baseline font-display leading-none select-none ${className}`}
+      style={{ fontSize }}
     >
-      <Image
-        src="/logo.png"
-        alt={`${SITE.name} logo`}
-        width={size}
-        height={size}
-        className="h-full w-full object-contain"
-      />
+      <span className="font-black tracking-[-0.03em] text-gold-deep">V</span>
+      <span className="font-semibold tracking-[0.16em]">EXNA</span>
+      {variant === "plate" && (
+        <span aria-hidden className="ml-1.5 h-[0.22em] w-[0.22em] rounded-full bg-gold" />
+      )}
     </span>
   );
 }

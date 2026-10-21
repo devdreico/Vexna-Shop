@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { eyebrow } from "@/lib/ui";
+import { PageHero } from "@/components/layout/PageHero";
 import { PageTransition } from "@/components/motion/PageTransition";
 
 export const metadata: Metadata = {
@@ -10,48 +10,48 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <PageTransition>
-      <section data-reveal className="bg-ink text-white">
-        <div className="mx-auto max-w-6xl px-4 py-14">
-          <p className={eyebrow}>Legal</p>
-          <h1 className="mt-3 text-4xl sm:text-5xl text-gold">Privacidad</h1>
-        </div>
-      </section>
+      <PageHero
+        eyebrowText="Legal"
+        title="Privacidad"
+        description="Qué datos recopilamos, para qué los usamos y cómo podés ejercer tus derechos."
+      />
 
       <section data-reveal className="mx-auto max-w-4xl px-4 py-12">
-        <div className="space-y-7 text-sm leading-relaxed text-ink/80">
+        <div className="space-y-7 text-sm leading-relaxed text-muted">
           <p>
-            En {`VEXNA SHOP`} tratamos únicamente los datos necesarios para procesar tu pedido:
+            En VEXNA SHOP tratamos únicamente los datos necesarios para procesar tu pedido:
             nombre, datos de contacto, dirección de entrega y contenido de tu carrito.
           </p>
 
           <article>
-            <h2 className="text-xl">¿Para qué usamos tus datos?</h2>
+            <h2 className="text-xl text-fg">¿Para qué usamos tus datos?</h2>
             <ul className="mt-3 list-disc space-y-2 pl-5">
-              <li>Preparar y entregar tu pedido (incluidos los enviados contraentrega).</li>
+              <li>Preparar y entregar tu pedido contra entrega.</li>
               <li>Coordinar la entrega por WhatsApp o email.</li>
-              <li>Registrar compras pagadas con Mercado Pago para dar seguimiento.</li>
+              <li>Dar seguimiento a cambios, devoluciones y garantías.</li>
             </ul>
           </article>
 
           <article>
-            <h2 className="text-xl">¿Quién recibe tus datos?</h2>
+            <h2 className="text-xl text-fg">¿Quién recibe tus datos?</h2>
             <p className="mt-2">
               Los formularios de esta web se envían a través de Formspree, que almacena la
-              información y nos la notifica por email. El pago con Mercado Pago se procesa en la
-              infraestructura de Mercado Libre, no almacenamos datos de tarjetas ni credenciales.
+              información y nos la notifica por email. El pago se realiza en efectivo o transferencia
+              al momento de la entrega: en ningún momento manejamos datos de tarjetas ni
+              credenciales bancarias.
             </p>
           </article>
 
           <article>
-            <h2 className="text-xl">Cookies y almacenamiento local</h2>
+            <h2 className="text-xl text-fg">Cookies y almacenamiento local</h2>
             <p className="mt-2">
-              Usamos almacenamiento local del navegador para recordar los productos de tu carrito.
-              No instalamos cookies publicitarias propias.
+              Usamos almacenamiento local del navegador para recordar los productos de tu carrito y
+              tu preferencia de tema (claro/oscuro). No instalamos cookies publicitarias propias.
             </p>
           </article>
 
           <article>
-            <h2 className="text-xl">Tus derechos</h2>
+            <h2 className="text-xl text-fg">Tus derechos</h2>
             <p className="mt-2">
               Podés solicitar acceso, actualización o eliminación de tus datos escribiéndonos por
               Facebook o al email de contacto indicado en la página Contacto.

@@ -3,7 +3,7 @@ export const SITE = {
   brand: "VEXNA BIKE",
   tagline: "Accesorios que impulsan tu ride",
   description:
-    "Tienda de accesorios y componentes para bicicleta en Colombia. Pagá contraentrega o directo con Mercado Pago.",
+    "Tienda de accesorios y componentes para bicicleta en Colombia. Todos los pedidos se entregan contra entrega: pagás al recibir.",
   url: "https://vexna-shop.vercel.app",
   locale: "es_CO",
   country: "Colombia",
@@ -16,7 +16,6 @@ export const SITE = {
 
 export const FORMSPREE = {
   contraentrega: "https://formspree.io/f/xjygkkyp",
-  mercadoPago: "https://formspree.io/f/xbgdllga",
   contacto: "https://formspree.io/f/TU_FORM_ID",
 } as const;
 

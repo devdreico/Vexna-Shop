@@ -1,26 +1,27 @@
-export const btnPrimary =
-  "inline-flex items-center justify-center gap-2 rounded-sm bg-blue px-6 py-3 text-sm font-semibold tracking-wide text-white uppercase transition duration-200 hover:bg-blue-bright active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 btn-focus";
+const focus = "btn-focus";
 
-export const btnGold =
-  "inline-flex items-center justify-center gap-2 rounded-sm bg-gold px-6 py-3 text-sm font-semibold tracking-wide text-ink uppercase transition duration-200 hover:bg-gold-light active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 btn-focus";
+const baseBtn =
+  "inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold tracking-wide uppercase transition duration-200 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50";
 
-export const btnOutlineGold =
-  "inline-flex items-center justify-center gap-2 rounded-sm border border-gold/70 px-6 py-3 text-sm font-semibold tracking-wide text-gold uppercase transition duration-200 hover:bg-gold hover:text-ink active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 btn-focus";
+export const btnPrimary = `${baseBtn} bg-gold text-ink shadow-[0_12px_28px_-14px_rgba(255,214,10,0.85)] hover:bg-gold-light ${focus}`;
 
-export const btnOutlineLight =
-  "inline-flex items-center justify-center gap-2 rounded-sm border border-white/40 px-6 py-3 text-sm font-semibold tracking-wide text-white uppercase transition duration-200 hover:border-gold hover:text-gold active:scale-[0.98] btn-focus";
+export const btnGold = btnPrimary;
+
+export const btnInk = `${baseBtn} bg-ink text-white hover:bg-ink-700 ${focus}`;
+
+export const btnOutlineGold = `${baseBtn} border border-gold-deep/70 text-gold-deep hover:bg-gold hover:text-ink hover:border-gold ${focus}`;
+
+export const btnOutlineOnDark = `${baseBtn} border border-white/35 text-white hover:border-gold hover:bg-gold hover:text-ink ${focus}`;
+
+export const btnOutlineInk = `${baseBtn} border border-ink/40 text-ink hover:bg-ink hover:text-gold ${focus}`;
 
 export const card =
-  "rounded-sm glass-light shadow-[0_2px_10px_rgba(10,10,12,0.06)] transition duration-300 hover:-translate-y-1 hover:border-gold/60";
-
-export const glassCardDark =
-  "rounded-sm glass-dark shadow-[0_2px_14px_rgba(10,10,12,0.25)] transition duration-300 hover:-translate-y-1 hover:border-gold/40";
+  "rounded-3xl glass-light transition duration-300 hover:-translate-y-1 hover:border-gold/70";
 
 export const input =
-  "w-full rounded-sm border border-ink/15 bg-white px-4 py-3 text-sm font-medium text-ink placeholder:text-muted focus:border-blue focus:outline-none focus:ring-2 focus:ring-blue/25 transition";
+  "w-full rounded-2xl border border-line bg-card px-4 py-3 text-sm font-medium text-fg placeholder:text-muted focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/30 transition";
 
-export const label =
-  "mb-1.5 block text-xs font-bold tracking-[0.14em] text-ink/70 uppercase";
+export const label = "mb-1.5 block text-xs font-bold tracking-[0.14em] text-muted uppercase";
 
 export const eyebrow =
-  "inline-flex items-center gap-2 text-xs font-bold tracking-[0.28em] text-blue uppercase";
+  "inline-flex items-center gap-2 text-xs font-bold tracking-[0.28em] text-gold-deep uppercase before:h-1.5 before:w-1.5 before:rounded-full before:bg-gold before:content-['']";

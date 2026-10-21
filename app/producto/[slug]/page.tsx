@@ -60,22 +60,22 @@ export default async function ProductoPage({ params }: Props) {
     <PageTransition>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <nav className="border-b border-ink/10 bg-cloud" aria-label="Migas de pan">
+      <nav className="border-b border-line bg-bg-2" aria-label="Migas de pan">
         <ol className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-3 text-xs text-muted">
           <li>
-            <Link href="/" className="hover:text-blue">Inicio</Link> /
+            <Link href="/" className="transition hover:text-gold-deep">Inicio</Link> /
           </li>
           <li>
-            <Link href="/tienda" className="hover:text-blue">Tienda</Link> /
+            <Link href="/tienda" className="transition hover:text-gold-deep">Tienda</Link> /
           </li>
-          <li aria-current="page" className="text-ink">{product.name}</li>
+          <li aria-current="page" className="text-fg font-semibold">{product.name}</li>
         </ol>
       </nav>
 
       <section data-reveal className="mx-auto max-w-6xl px-4 py-10 sm:py-14">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="space-y-4">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-gold/40 bg-ink">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-gold/45 bg-ink">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -85,14 +85,14 @@ export default async function ProductoPage({ params }: Props) {
                 className="object-cover"
               />
               {product.badge && (
-                <span className="absolute top-4 left-4 bg-gold px-3 py-1.5 text-[11px] font-bold tracking-widest text-ink uppercase">
+                <span className="absolute top-4 left-4 rounded-full bg-gold px-3.5 py-1.5 text-[11px] font-black tracking-widest text-ink uppercase">
                   {product.badge}
                 </span>
               )}
             </div>
             <div className="grid grid-cols-3 gap-3">
               {product.gallery.map((g) => (
-                <div key={g} className="relative aspect-[4/3] overflow-hidden rounded-sm border border-ink/10 bg-ink">
+                <div key={g} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-ink">
                   <Image src={g} alt={`${product.name} vista`} fill sizes="200px" className="object-cover" />
                 </div>
               ))}
@@ -105,20 +105,20 @@ export default async function ProductoPage({ params }: Props) {
             <p className="mt-4 text-base leading-relaxed text-muted">{product.short}</p>
             <p className="mt-6 font-display font-extrabold text-4xl text-gold-deep">{formatPrice(product.price)}</p>
 
-            <div className="my-6 h-px bg-ink/10" />
+            <div className="my-6 h-px bg-line" />
 
             <ProductPurchase product={product} />
 
-            <div className="mt-8 space-y-3 border-t border-ink/10 pt-6">
+            <div className="mt-8 space-y-3 border-t border-line pt-6">
               <h2 className="text-lg">Descripción</h2>
-              <p className="text-sm leading-relaxed text-ink/75">{product.description}</p>
+              <p className="text-sm leading-relaxed text-muted">{product.description}</p>
             </div>
 
-            <dl className="mt-6 grid gap-2 border-t border-ink/10 pt-6 text-sm sm:grid-cols-2">
+            <dl className="mt-6 grid gap-2 border-t border-line pt-6 text-sm sm:grid-cols-2">
               {product.specs.map((s) => (
-                <div key={s.label} className="flex justify-between gap-3 border-b border-ink/5 py-2">
+                <div key={s.label} className="flex justify-between gap-3 border-b border-line py-2">
                   <dt className="text-muted">{s.label}</dt>
-                  <dd className="font-semibold text-ink">{s.value}</dd>
+                  <dd className="font-semibold text-fg">{s.value}</dd>
                 </div>
               ))}
             </dl>
@@ -126,7 +126,7 @@ export default async function ProductoPage({ params }: Props) {
         </div>
       </section>
 
-      <section data-reveal className="border-t border-ink/10 bg-cloud">
+      <section data-reveal className="border-t border-line bg-bg-2">
         <div className="mx-auto max-w-6xl px-4 py-14">
           <h2 className="text-2xl">También te puede gustar</h2>
           <div className="mt-7 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

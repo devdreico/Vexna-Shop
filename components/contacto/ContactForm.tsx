@@ -51,7 +51,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 rounded-sm glass-light p-6 shadow-[0_2px_14px_rgba(10,10,12,0.06)] sm:p-8">
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-3xl glass-light p-6 sm:p-8">
       <h2 className="text-2xl">Escribinos</h2>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -76,7 +76,7 @@ export function ContactForm() {
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
       {!CONFIGURED && (
-        <p className="rounded-sm border border-gold/50 bg-gold/10 px-3 py-2 text-xs leading-relaxed text-ink/80">
+        <p className="rounded-2xl border border-ink/10 bg-gold px-3 py-2 text-xs leading-relaxed font-medium text-ink">
           Formulario pendiente de configurar: creá un formulario en formspree.io y colocá su
           endpoint en <code className="font-mono">data/config.ts</code>. Mientras tanto, contactanos
           por Facebook.
@@ -86,8 +86,8 @@ export function ContactForm() {
       {message && (
         <p
           role="alert"
-          className={`rounded-sm px-3 py-2 text-sm ${
-            status === "ok" ? "bg-blue/10 text-blue-deep" : "bg-danger/10 text-danger"
+          className={`rounded-2xl px-3 py-2 text-sm ${
+            status === "ok" ? "border border-gold/50 bg-gold/15 font-semibold text-fg" : "bg-danger-soft text-danger"
           }`}
         >
           {message}

@@ -29,23 +29,28 @@ export function ProductCard({ product, index = 0 }: Props) {
           className="object-cover transition duration-500 group-hover:scale-105"
         />
         {product.badge && (
-          <span className="absolute top-3 left-3 bg-gold px-2.5 py-1 text-[10px] font-bold tracking-widest text-ink uppercase">
+          <span className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 text-[10px] font-black tracking-widest text-ink uppercase">
             {product.badge}
           </span>
         )}
+        <span className="absolute right-3 bottom-3 rounded-full bg-ink/85 px-3 py-1 text-[10px] font-bold tracking-widest text-gold uppercase backdrop-blur-sm">
+          Contra entrega
+        </span>
       </Link>
 
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <p className="text-[10px] font-bold tracking-[0.2em] text-blue uppercase">
+      <div className="flex flex-1 flex-col gap-2 p-5">
+        <p className="text-[10px] font-bold tracking-[0.2em] text-gold-deep uppercase">
           {getCategoryLabel(product.category)}
         </p>
         <h3 className="text-lg leading-tight">
-          <Link href={`/producto/${product.slug}`} className="transition hover:text-blue btn-focus">
+          <Link href={`/producto/${product.slug}`} className="transition hover:text-gold-deep btn-focus">
             {product.name}
           </Link>
         </h3>
         <p className="line-clamp-2 text-sm leading-relaxed text-muted">{product.short}</p>
-        <p className="mt-auto pt-2 font-display font-extrabold text-2xl text-gold-deep">{formatPrice(product.price)}</p>
+        <p className="mt-auto pt-2 font-display font-extrabold text-2xl text-gold-deep">
+          {formatPrice(product.price)}
+        </p>
         <AddToCartButton slug={product.slug} className="mt-1" />
       </div>
     </article>

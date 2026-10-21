@@ -22,7 +22,6 @@ export interface Product {
   specs: ProductSpec[];
   badge?: string;
   featured?: boolean;
-  mpLink?: string;
   stock?: boolean;
 }
 
